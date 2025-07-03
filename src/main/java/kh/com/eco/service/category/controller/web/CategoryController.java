@@ -5,6 +5,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import kh.com.eco.service.category.controller.vo.request.BatchCreateRequestVO;
 import kh.com.eco.service.category.controller.vo.request.CategoryCreateRequestVO;
+import kh.com.eco.service.category.controller.vo.request.CategoryUpdateRequestVO;
 import kh.com.eco.service.category.controller.vo.response.CategoryResponseVO;
 import kh.com.eco.service.category.dto.request.BatchCreateRequestDTO;
 import kh.com.eco.service.category.dto.request.CategoryCreateRequestDTO;
@@ -50,7 +51,7 @@ public class CategoryController {
 	@Operation(method = "update", summary = "Update a category", description = "Update an existing category by its ID.")
 	@PostMapping("/{categoryId}")
 	public ResponseMessageBuilder.ResponseMessage<Void> updateCategory(@PathVariable Long categoryId,
-	                                                                   @RequestBody @Valid CategoryCreateRequestVO request) {
+	                                                                   @RequestBody CategoryUpdateRequestVO request) {
 		this.service.updateCategory(categoryId, mapper.convertValue(request, CategoryCreateRequestDTO.class));
 		return new ResponseMessageBuilder<Void>().success().build();
 	}
