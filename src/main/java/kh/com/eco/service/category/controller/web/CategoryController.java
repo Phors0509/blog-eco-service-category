@@ -51,7 +51,7 @@ public class CategoryController {
 	@Operation(method = "update", summary = "Update a category", description = "Update an existing category by its ID.")
 	@PostMapping("/{categoryId}")
 	public ResponseMessageBuilder.ResponseMessage<Void> updateCategory(@PathVariable Long categoryId,
-	                                                                   @RequestBody CategoryUpdateRequestVO request) {
+	                                                                   @RequestBody @Valid CategoryUpdateRequestVO request) {
 		this.service.updateCategory(categoryId, mapper.convertValue(request, CategoryCreateRequestDTO.class));
 		return new ResponseMessageBuilder<Void>().success().build();
 	}
